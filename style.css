@@ -2,3 +2,9 @@ body{
     background-color: black;
     color:orange;
 }
+
+img {
+    height: 200px;
+    width: 200px;
+
+}
