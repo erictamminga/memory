@@ -1,6 +1,7 @@
 Research
 Find a graphic api
 
+
 Parts of game
 Display Instructions for game
 Display Loading image
@@ -27,3 +28,4 @@ Make js page
 
 strech goals
 ad limits to amount of tries (expert mode)
+Add catchy sounds
