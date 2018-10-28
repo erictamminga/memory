@@ -7,12 +7,16 @@ var apiUrl = "https://pixabay.com/api/?key="+API_KEY + "&q=" + SearchValue + "&i
 var dataArray = []
 dataArray = axios.get(apiUrl)
 .then(function (response){
-    console.log(response)
+    //console.log(response)
     var deck = document.querySelectorAll(".grid-item")
-    console.log(deck)
+    //console.log(deck)
     var index = 0;
-    response.data.hits.forEach((item)=>{
-        var element = createImageElement(item.largeImageURL)
+    var images = response.data.hits;
+    //work here
+    
+    console.log(images)
+    images.forEach((item)=>{
+        var element = createImageElement(item.largeImageURL, 'frontFace')
         deck[index].appendChild(element)
         index ++;
     });
@@ -21,11 +25,13 @@ dataArray = axios.get(apiUrl)
     console.log(error)
 })
 
-function createImageElement(src){
+function createImageElement(src, face){
     var img = document.createElement('img');
     img.src = src;
+    img.className = face; 
     console.log(src)
     console.log(img)
     return img;
 }
+
 

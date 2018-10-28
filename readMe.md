@@ -6,13 +6,13 @@ Find a graphic api
 Parts of game
 Display Instructions for game
 Display Loading image
-Build a table in html
-Get 10 new Images from API Call on each reload load into array
+*Build a grid in html
+*Get 20 new Images from API Call on each reload load into array
 Get one top card Image
 Duplicate Each Image
-Arrange Images in a Grid 5x4
+*Arrange Images in a Grid 5x4
 Randomize Images (shuffle function)
-give Each card a on off "up down value" (rotate on y axis)
+*give Each card a on off "up down value" (rotate on y axis)
 Event Listener on each "Card"
 Button to restart
 
