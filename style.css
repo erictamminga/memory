@@ -13,7 +13,12 @@ img {
     border: 5px solid rgba(0, 0, 0, 0.8);
     text-align: center;
     width: 215px;
+    border-radius: 15px;
+}
 
+.grid-item:hover{
+    transform:rotateY(180deg);
+    transition:transform 0.8s;
 }
 .grid-container {
   display: grid;
@@ -21,10 +26,3 @@ img {
   width: 1075px;
 
 }
-/* .column{
-    /* float:left; */
-    /* width: 25%;
-    padding: 5px;
-    grid-template-columns: auto auto auto auto auto; 
-    display: grid; 
-} */
