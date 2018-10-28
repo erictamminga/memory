@@ -14,12 +14,28 @@ dataArray = axios.get(apiUrl)
     var images = response.data.hits;
     //work here
     
-    console.log(images)
-    images.forEach((item)=>{
-        var element = createImageElement(item.largeImageURL, 'frontFace')
-        deck[index].appendChild(element)
-        index ++;
-    });
+    // console.log(images)
+    // images.forEach((item)=>{
+    //     var element = createImageElement(item.largeImageURL, 'frontFace')
+    //     deck[index].appendChild(element)
+    //     index ++;
+    // });
+     
+    
+    //we have a deck without images but they are cards
+    //we are grabbing 10 images from the 20 available
+    var imageSelection = grabRandomImage(images);
+    console.log(imageSelection);
+    //var shuffleImages = shuffle(imageSelection)
+    //console.log(shuffleImages)
+    
+    
+
+    //from those 10 images we need to attach each one to two cards
+        // for(var i=0; i < imageSelection.length;i++){
+        //     deck[0]=createImageElement(imageSelection[i].largeImageURL, 'frontFace')
+        //     deck[1]=createImageElement(imageSelection[i].largeImageURL, 'frontFace')
+        // }
 })
 .catch(function (error){
     console.log(error)
@@ -34,4 +50,21 @@ function createImageElement(src, face){
     return img;
 }
 
-
+function grabRandomImage(array){
+    var newArray = [];
+    var count = array.length
+    for (var i=0;i<10;i++){
+        random = Math.floor(Math.random()*array.length)
+        newArray.push(array[random])
+        array.splice(random,1)
+    }
+    return newArray.concat(newArray);
+ }
+ 
+//  function shuffle(cards) {
+//     cards.forEach(card => {
+//       let ramdomPos = Math.floor(Math.random() * cards.length);
+//       card.style.order = ramdomPos;
+//     });
+//     return cards
+//    }
