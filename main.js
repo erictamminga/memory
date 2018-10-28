@@ -10,17 +10,15 @@ dataArray = axios.get(apiUrl)
 .then(function (response){
     //console.log(response)
     var deck = document.querySelectorAll(".grid-item")
+    let cards = [...deck];
+    console.log(cards);
+    for (var i = 0; i < cards.length; i++){
+            cards[i].addEventListener("click", displayCard);
+         };
     //console.log(deck)
     var index = 0;
     var images = response.data.hits;
     //work here
-    
-    // console.log(images)
-    // images.forEach((item)=>{
-    //     var element = createImageElement(item.largeImageURL, 'frontFace')
-    //     deck[index].appendChild(element)
-    //     index ++;
-    // });
      
     
     //we have a deck without images but they are cards
@@ -93,3 +91,18 @@ function grabRandomImage(array){
       item.style.order = ramdomPos;
     });
 }
+
+// // cards array holds all cards
+// let card = document.getElementsByClassName("card");
+// let cards = [...card];
+// // loop to add event listeners to each card
+// for (var i = 0; i < cards.length; i++){
+//    cards[i].addEventListener("click", displayCard);
+// };
+// //displayCard is a function we'll talk about this soon
+
+var displayCard = function (){
+    this.classList.toggle("open");
+    this.classList.toggle("show");
+    this.classList.toggle("disabled");
+ }
