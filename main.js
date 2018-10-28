@@ -2,7 +2,8 @@
 var API_KEY = "10520998-dbab288ebe7e1df80d761b434"
 var SearchValue = "halloween"
 var apiUrl = "https://pixabay.com/api/?key="+API_KEY + "&q=" + SearchValue + "&image_type=illustration&orientation=vertical";
-
+var value1 = []
+var value2 = []
 
 var dataArray = []
 dataArray = axios.get(apiUrl)
@@ -25,11 +26,36 @@ dataArray = axios.get(apiUrl)
     //we have a deck without images but they are cards
     //we are grabbing 10 images from the 20 available
     var imageSelection = grabRandomImage(images);
-    console.log(imageSelection);
+    //const animalArray = [{animal:'dogs'},{animal:'birds'},{animal:'man'}];
+    const sortArray = array =>{
+        let copy = array.map(el => el);
+        copy.sort(()=>{ return Math.floor(Math.random() * 20)});
+        return copy;
+    }
+    console.log(imageSelection)
+    const shuffledImages = sortArray(imageSelection);
+    console.log(shuffledImages)
+
+   //s console.log(imageSelection);
     //var shuffleImages = shuffle(imageSelection)
     //console.log(shuffleImages)
-    
-    
+    shuffledArray =shuffle(imageSelection)
+        console.log(shuffledArray)
+        
+    // 
+    function shuffle(a) {
+        var j, x, i;
+        for (i = a.length - 1; i > 0; i--) {
+            j = Math.floor(Math.random() * (i + 1));
+            x = a[i];
+            //console.log(x)
+            a[i] = a[j];
+            a[j] = x;
+            //console.log(a[j])
+        }
+        return a;
+    }
+
 
     //from those 10 images we need to attach each one to two cards
         // for(var i=0; i < imageSelection.length;i++){
@@ -61,10 +87,9 @@ function grabRandomImage(array){
     return newArray.concat(newArray);
  }
  
-//  function shuffle(cards) {
-//     cards.forEach(card => {
-//       let ramdomPos = Math.floor(Math.random() * cards.length);
-//       card.style.order = ramdomPos;
-//     });
-//     return cards
-//    }
+ function shuffle(array) {
+    array.forEach(item => {
+      let ramdomPos = Math.floor(Math.random() * 20);
+      item.style.order = ramdomPos;
+    });
+}
