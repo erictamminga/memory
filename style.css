@@ -6,10 +6,9 @@ div{
 img {
     height: 200px;
     width: 200px;
-
+    visibility: hidden;
 }
 .grid-item {
-
     border: 5px solid rgba(0, 0, 0, 0.8);
     text-align: center;
     width: 215px;
@@ -17,8 +16,11 @@ img {
 }
 
 .grid-item:hover{
-    transform:rotateY(180deg);
-    transition:transform 0.8s;
+    /* transform:rotateY(180deg);
+    transition:transform 0.8s; */
+}
+.up img{
+    visibility: visible;
 }
 .grid-container {
   display: grid;
