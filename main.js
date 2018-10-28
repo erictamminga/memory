@@ -1,6 +1,6 @@
 //Api
 var API_KEY = "10520998-dbab288ebe7e1df80d761b434"
-var SearchValue = "winter"
+var SearchValue = "halloween"
 var apiUrl = "https://pixabay.com/api/?key="+API_KEY + "&q=" + SearchValue + "&image_type=illustration&orientation=vertical";
 
 
@@ -8,7 +8,7 @@ var dataArray = []
 dataArray = axios.get(apiUrl)
 .then(function (response){
     console.log(response)
-    var deck = document.querySelectorAll(".card")
+    var deck = document.querySelectorAll(".grid-item")
     console.log(deck)
     var index = 0;
     response.data.hits.forEach((item)=>{
@@ -28,3 +28,4 @@ function createImageElement(src){
     console.log(img)
     return img;
 }
+
