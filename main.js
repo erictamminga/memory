@@ -2,7 +2,7 @@
 var API_KEY = "10520998-dbab288ebe7e1df80d761b434"
 var SearchValue = "halloween"
 var apiUrl = "https://pixabay.com/api/?key="+API_KEY + "&q=" + SearchValue + "&image_type=illustration&orientation=vertical";
-
+var cardsFlipped = 0
 var dataArray = []
 dataArray = axios.get(apiUrl)
 .then(function (response){
@@ -42,9 +42,12 @@ function getTenRandomImages(array){
  
 
 var displayCard = function (e){
-    // e.target.classList.toggle("down");
-    e.target.classList.toggle("up");
-    // e.target.classList.toggle("matched");
+    cardsFlipped ++ 
+    if (cardsFlipped<=2){
+        e.target.classList.toggle("up");
+    }
+    
+    
  }
 
 function randomizeAllImages(array){
