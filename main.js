@@ -51,18 +51,27 @@ var displayCard = function (e){
         
     }else{
         cardsFlipped=0;
-        if(lastTwoFlippedCards[0].firstChild.src===lastTwoFlippedCards[1].firstChild.src){
-           lastTwoFlippedCards = [];
-        }else{
-            // lastTwoFlippedCards[0].classList.toggle("up");
+        compareCards();
+    }
+    if(cardsFlipped===2){
+        compareCards();
+
+    }
+ }
+
+ function compareCards(){
+    if(lastTwoFlippedCards[0].firstChild.src===lastTwoFlippedCards[1].firstChild.src){
+            
+        lastTwoFlippedCards = [];
+     }else{
+         setTimeout(()=>{
             lastTwoFlippedCards[0].classList.remove("up");
             lastTwoFlippedCards[1].classList.remove("up");
             lastTwoFlippedCards = [];
-            // lastTwoFlippedCards[1].classList.toggle("up");
-        }
-    }
-    
-    
+         },300)
+         
+         
+     }
  }
 
 function randomizeAllImages(array){
