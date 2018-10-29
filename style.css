@@ -14,11 +14,11 @@ img {
     width: 215px;
     border-radius: 15px;
 }
-
-.grid-item:hover{
-    /* transform:rotateY(180deg);
-    transition:transform 0.8s; */
-}
+/* 
+.grid-item:active{
+    transform:rotateY(180deg);
+    transition:transform 0.8s;
+} */
 .up img{
     visibility: visible;
 }
@@ -28,3 +28,9 @@ img {
   width: 1075px;
 
 }
+/* img {
+
+    background: url(loading.gif) 50% no-repeat;
+    border: 1px solid black;
+    border-radius: 5px;
+  } */
