@@ -7,15 +7,17 @@ img {
     height: 200px;
     width: 200px;
     visibility: hidden;
+    background-color: orange;
+    border-radius: 25px;
 }
 .grid-item {
     border: 5px solid rgba(0, 0, 0, 0.8);
     text-align: center;
     width: 215px;
-    border-radius: 15px;
+    border-radius: 25px;
 }
-/* 
-.grid-item:active{
+
+/* .grid-item:hover{
     transform:rotateY(180deg);
     transition:transform 0.8s;
 } */

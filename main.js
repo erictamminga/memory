@@ -1,20 +1,25 @@
 //Api
 var API_KEY = "10520998-dbab288ebe7e1df80d761b434"
-var SearchValue = "halloween"
+var SearchValue = "dogs"
 var apiUrl = "https://pixabay.com/api/?key="+API_KEY + "&q=" + SearchValue + "&image_type=illustration&orientation=vertical";
 var cardsFlipped = 0
+
 var lastTwoFlippedCards = []
 var dataArray = []
+
 dataArray = axios.get(apiUrl)
 .then(function (response){
     var deck = document.querySelectorAll(".grid-item")
     let cards = [...deck];
     
     
-    var images = response.data.hits;
+    var imageSet = response.data.hits;
+    var images = [...imageSet];
+
     var randomImages = getTenRandomImages(images);
     var doubleImages = randomImages.concat(randomImages);    
     var shuffledImages = randomizeAllImages(doubleImages);
+
     shuffledImages.forEach((image,index)=>{
         var element = createImageElement(image.largeImageURL)
         cards[index].appendChild(element)
