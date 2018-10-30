@@ -38,7 +38,6 @@ function createImageElement(src){
 
 function getTenRandomImages(array){
     var newArray = [];
-    var count = array.length
     for (var i=0;i<10;i++){
         random = Math.floor(Math.random()*array.length)
         newArray.push(array[random])
@@ -57,7 +56,7 @@ var cardClicked = function (e){
             cleanMatch(lastTwoFlippedCards);
             resetVariables();
         }
- }
+    }
 }
 
 function cleanMatch(array){
