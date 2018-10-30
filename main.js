@@ -17,9 +17,9 @@ var dataArray = axios.get(apiUrl)
     var imageSet = response.data.hits;
     var images = [...imageSet];
 
-    var randomImages = getTenRandomImages(images);
-    var doubleImages = randomImages.concat(randomImages);    
-    var shuffledImages = randomizeAllImages(doubleImages);
+    var randomImages = shuffleArray(images).splice(0,10)
+    var doubleImages = randomImages.concat(randomImages);
+    var shuffledImages = shuffleArray(doubleImages);
 
     shuffledImages.forEach((image,index)=>{
         var element = createImageElement(image.largeImageURL)
@@ -35,17 +35,6 @@ function createImageElement(src){
     img.src = src;
     return img;
 }
-
-function getTenRandomImages(array){
-    var newArray = [];
-    for (var i=0;i<10;i++){
-        random = Math.floor(Math.random()*array.length)
-        newArray.push(array[random])
-        array.splice(random,1)
-    }
-    return newArray;
-}
- 
 
 var cardClicked = function (e){
     e.target.classList.add("up");
@@ -69,20 +58,43 @@ function cleanMatch(array){
         updateScore(100); 
     }
 }
+
 function resetVariables(){
     lastTwoFlippedCards = [];
 }
 
-function randomizeAllImages(array){
-    let copyArray = [];
-    while(array.length>0){
-        ranNumber = Math.floor(Math.random()*array.length);
-        copyArray.push(array[ranNumber])
-        array.splice(ranNumber,1)
+// //randomizeAllImages(array) and getTenRandomImages do the same thing except one only returns 10 items
+// function randomizeAllImages(array){
+//     let copyArray = [];
+//     while(array.length>0){
+//         ranNumber = Math.floor(Math.random()*array.length);
+//         copyArray.push(array[ranNumber])
+//         array.splice(ranNumber,1)
+//     }
+//     return copyArray;
+// }
+// function getTenRandomImages(array){
+//     var newArray = [];
+//     for (var i=0;i<10;i++){
+//         random = Math.floor(Math.random()*array.length)
+//         newArray.push(array[random])
+//         array.splice(random,1)
+//     }
+//     return newArray;
+// }
+//refactored into one array that shuffles, will clip the array length later by using splice
+function shuffleArray(array){
+    var length = array.length;
+    var newArray = [];
+    for (var i=0;i<length;i++){
+        random = Math.floor(Math.random()*array.length)
+        newArray.push(array[random])
+        array.splice(random,1)
     }
-    return copyArray;
+    return newArray;
 }
 
+//add to the score variable and then replace the text content with the new content
 function updateScore(amount){
     score += amount
     scoreElement.textContent = "Score: " + score;
