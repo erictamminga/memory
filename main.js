@@ -1,6 +1,6 @@
 //Api variables
 var API_KEY = "10520998-dbab288ebe7e1df80d761b434"
-var SearchValue = "trees"
+var SearchValue = "dogs"
 var apiUrl = "https://pixabay.com/api/?key="+API_KEY + "&q=" + SearchValue + "&image_type=illustration&orientation=vertical";
 
 //setup global variables
@@ -13,9 +13,7 @@ var dataArray = axios.get(apiUrl)
 .then(function (response){
     var cards = document.querySelectorAll(".grid-item")
     var imageSet = response.data.hits;
-    var apiImages = [...imageSet];
-
-    var randomTenImages = shuffleArray(apiImages).splice(0,10)
+    var randomTenImages = shuffleArray(imageSet).splice(0,10)
     var doubleImages = randomTenImages.concat(randomTenImages);
     var shuffledImages = shuffleArray(doubleImages);
 
