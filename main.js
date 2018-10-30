@@ -60,6 +60,7 @@ var cardClicked = function (e){
         }
 
  }
+}
 
  function cleanMatch(array){
     if(array[0].firstChild.src!=array[1].firstChild.src){  
