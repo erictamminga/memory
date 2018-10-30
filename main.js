@@ -1,6 +1,6 @@
 //Api
 var API_KEY = "10520998-dbab288ebe7e1df80d761b434"
-var SearchValue = "dogs"
+var SearchValue = "trees"
 var apiUrl = "https://pixabay.com/api/?key="+API_KEY + "&q=" + SearchValue + "&image_type=illustration&orientation=vertical";
 var cardsFlipped = 0
 
@@ -25,7 +25,7 @@ dataArray = axios.get(apiUrl)
         cards[index].appendChild(element)
     })
 
-    document.querySelector(".grid-container").addEventListener("click", displayCard);
+    document.querySelector(".grid-container").addEventListener("click", cardClicked);
 })
 .catch(function (error){console.log(error)})
 
@@ -47,36 +47,32 @@ function getTenRandomImages(array){
  }
  
 
-var displayCard = function (e){
-     
-    if (cardsFlipped<2){
-        cardsFlipped ++
-        e.target.classList.add("up")
-        lastTwoFlippedCards.push(e.target)
-        
-    }else{
-        cardsFlipped=0;
-        compareCards();
-    }
-    if(cardsFlipped===2){
-        compareCards();
+var cardClicked = function (e){
+    //up card
+    cardsFlipped ++;
+    e.target.classList.add("up");
+    lastTwoFlippedCards.push(e.target);
 
-    }
+    if (cardsFlipped>0){ //already clicked one
+        if (cardsFlipped === 2){ //check for pair
+            cleanMatch(lastTwoFlippedCards);
+            resetVariables();
+        }
+
  }
 
- function compareCards(){
-    if(lastTwoFlippedCards[0].firstChild.src===lastTwoFlippedCards[1].firstChild.src){
-            
-        lastTwoFlippedCards = [];
-     }else{
-         setTimeout(()=>{
-            lastTwoFlippedCards[0].classList.remove("up");
-            lastTwoFlippedCards[1].classList.remove("up");
-            lastTwoFlippedCards = [];
-         },300)
-         
-         
-     }
+ function cleanMatch(array){
+    if(array[0].firstChild.src!=array[1].firstChild.src){  
+        setTimeout(()=>{
+            array[0].classList.remove("up");
+            array[1].classList.remove("up");
+        },200)
+     
+    }
+ }
+ function resetVariables(){
+     lastTwoFlippedCards = [];
+     cardsFlipped = 0;
  }
 
 function randomizeAllImages(array){
