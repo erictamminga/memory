@@ -10,7 +10,7 @@ img {
     border-radius: 25px;
 }
 .grid-item {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(30, 20, 165, 0.5);
     border: 5px solid rgba(0, 0, 0, 0.8);
     text-align: center;
     width: 200px;

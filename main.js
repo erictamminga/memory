@@ -6,6 +6,7 @@ var apiUrl = "https://pixabay.com/api/?key="+API_KEY + "&q=" + SearchValue + "&i
 //setup global variables
 var lastTwoFlippedCards = []
 var score = 0;
+var totalPairs =10;
 var scoreElement = document.querySelector("#score")
 
 //api call
@@ -49,6 +50,9 @@ function cleanUpNonMatch(array){
         },200)
     }else{//correct match
         updateScore(100); 
+        if (score/100==totalPairs){
+            setTimeout(()=>{alert("You Win",resetGame())},500)
+        }
     }
 }
 
@@ -67,4 +71,15 @@ function shuffleArray(array){
 function updateScore(amount){
     score += amount
     scoreElement.textContent = "Score: " + score;
+}
+
+function resetGame(){
+    //clear all tiles
+    var cards = document.querySelectorAll(".grid-item")
+    cards.forEach((image)=>{
+        image.classList.remove("up")
+    })
+    //remove child images
+    //shuffle images
+    //append child images
 }
