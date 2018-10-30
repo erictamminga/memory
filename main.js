@@ -1,9 +1,9 @@
-//Api
+//Api variables
 var API_KEY = "10520998-dbab288ebe7e1df80d761b434"
 var SearchValue = "trees"
 var apiUrl = "https://pixabay.com/api/?key="+API_KEY + "&q=" + SearchValue + "&image_type=illustration&orientation=vertical";
 
-//setup
+//setup global variables
 var lastTwoFlippedCards = []
 var score = 0;
 var scoreElement = document.querySelector("#score")
@@ -13,12 +13,13 @@ var dataArray = axios.get(apiUrl)
 .then(function (response){
     var cards = document.querySelectorAll(".grid-item")
     var imageSet = response.data.hits;
-    var images = [...imageSet];
+    var apiImages = [...imageSet];
 
-    var randomImages = shuffleArray(images).splice(0,10)
-    var doubleImages = randomImages.concat(randomImages);
+    var randomTenImages = shuffleArray(apiImages).splice(0,10)
+    var doubleImages = randomTenImages.concat(randomTenImages);
     var shuffledImages = shuffleArray(doubleImages);
 
+    //add the images to the div's
     shuffledImages.forEach((image,index)=>{
         var element = createImageElement(image.largeImageURL)
         cards[index].appendChild(element)
@@ -37,12 +38,12 @@ function cardClicked(e){
     e.target.classList.add("up");
     lastTwoFlippedCards.push(e.target);
     if (lastTwoFlippedCards.length === 2){ //check for pair
-        cleanMatch(lastTwoFlippedCards);
+        cleanUpNonMatch(lastTwoFlippedCards);
         lastTwoFlippedCards = [];
     }
 }
 
-function cleanMatch(array){
+function cleanUpNonMatch(array){
     if(array[0].firstChild.src!=array[1].firstChild.src){ 
         setTimeout(()=>{
             array[0].classList.remove("up");
@@ -52,7 +53,6 @@ function cleanMatch(array){
         updateScore(100); 
     }
 }
-
 
 function shuffleArray(array){
     var length = array.length;
