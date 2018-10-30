@@ -2,12 +2,11 @@
 var API_KEY = "10520998-dbab288ebe7e1df80d761b434"
 var SearchValue = "trees"
 var apiUrl = "https://pixabay.com/api/?key="+API_KEY + "&q=" + SearchValue + "&image_type=illustration&orientation=vertical";
-var cardsFlipped = 0
 
 var lastTwoFlippedCards = []
-var dataArray = []
 
-dataArray = axios.get(apiUrl)
+
+var dataArray = axios.get(apiUrl)
 .then(function (response){
     var deck = document.querySelectorAll(".grid-item")
     let cards = [...deck];
@@ -48,17 +47,14 @@ function getTenRandomImages(array){
  
 
 var cardClicked = function (e){
-    //up card
-    cardsFlipped ++;
     e.target.classList.add("up");
     lastTwoFlippedCards.push(e.target);
 
-    if (cardsFlipped>0){ //already clicked one
-        if (cardsFlipped === 2){ //check for pair
+    if (lastTwoFlippedCards.length>0){ //already clicked one
+        if (lastTwoFlippedCards.length === 2){ //check for pair
             cleanMatch(lastTwoFlippedCards);
             resetVariables();
         }
-
  }
 }
 
@@ -68,16 +64,18 @@ var cardClicked = function (e){
             array[0].classList.remove("up");
             array[1].classList.remove("up");
         },200)
-     
     }
  }
  function resetVariables(){
      lastTwoFlippedCards = [];
-     cardsFlipped = 0;
  }
 
 function randomizeAllImages(array){
-    let copy = array.map(el => el);
-    copy.sort(()=>{ return Math.floor(Math.random() * 20)});
-    return copy;
+    let copyArray = [];
+    while(array.length>0){
+        ranNumber = Math.floor(Math.random()*array.length);
+        copyArray.push(array[ranNumber])
+        array.splice(ranNumber,1)
+    }
+    return copyArray;
 }
